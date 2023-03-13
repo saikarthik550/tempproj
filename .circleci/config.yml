@@ -65,7 +65,7 @@ jobs:
       - restore_cache:
           keys: [backend-build]
       # Your job code here
-       run:
+      - run:
           name: test-backend 
           command: |
             cd backend
