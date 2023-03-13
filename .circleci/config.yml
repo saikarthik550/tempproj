@@ -179,12 +179,11 @@ jobs:
       - checkout
       # Add ssh keys with fingerprint
       - add_ssh_keys:
-          fingerprints: [AAAAC3NzaC1lZDI1NTE5AAAAIM+UW5LPpyOZulGHdJOZKVb+ElageJIKM7dAT7Xm0nEp]
-      - attach workspace:
+          fingerprints: ["AAAAC3NzaC1lZDI1NTE5AAAAIM+UW5LPpyOZulGHdJOZKVb+ElageJIKM7dAT7Xm0nEp"]
+      - attach_workspace:
           at: ~/
-      
       - run:
-          name: Install Ansible
+          name: Install Dependencies
           command: |
             pip install awscli
             apk add --update ansible
