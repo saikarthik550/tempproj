@@ -243,7 +243,9 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add --update --no-cache tar gzip nodejs npm aws-cli curl
+            yum -y install tar gzip jq npm
+            curl -sL https://rpm.nodesource.com/setup_14.18.1 | bash -
+            yum -y install nodejs
       - run:
           name: Get backend url
           command: |
