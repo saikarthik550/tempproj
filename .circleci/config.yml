@@ -172,8 +172,7 @@ jobs:
     
   configure-infrastructure:
     docker:
-      # Docker image here that supports Ansible
-      - image: python:3.11.0-alpine3.17
+      - image: python:3.11-alpine3.11
     steps:
       # Checkout code from git
       - checkout
@@ -191,6 +190,7 @@ jobs:
           name: Configure server
           command: |
             cd .circleci/ansible
+            cat inventory.txt
             ansible-playbook -i inventory.txt configure-server.yml
       # Here's where you will add some code to rollback on failure  
       - destroy-environment
