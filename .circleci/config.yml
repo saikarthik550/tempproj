@@ -210,6 +210,7 @@ jobs:
             ansible-playbook -i inventory.txt configure-server.yml
       # Here's where you will add some code to rollback on failure  
       - destroy-environment
+      
   
   run-migrations:
     docker:
@@ -228,7 +229,9 @@ jobs:
           name: Send migration results to kvdb
           command: |
             curl --insecure https://kvdb.io/8pypAWcFgWQkLPfFFn4EWh/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
-     # Here's where you will add some code to rollback on failure      
+     # Here's where you will add some code to rollback on failure  
+      - destroy-environment    
+      - revert-migrations    
 
   deploy-frontend:
     docker:
@@ -236,11 +239,11 @@ jobs:
       - image: amazon/aws-cli
     steps:
       # Checkout code from git
+      - checkout
       - run:
           name: Install dependencies
           command: |
             apk add --update --no-cache tar gzip nodejs npm aws-cli curl
-      - run:
       - run:
           name: Get backend url
           command: |
@@ -264,6 +267,7 @@ jobs:
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
       # Here's where you will add some code to rollback on failure  
       - destroy-environment    
+      - revert-migrations
                     
   deploy-backend:
     docker:
