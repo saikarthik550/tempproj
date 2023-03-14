@@ -17,7 +17,22 @@ commands:
           when: on_fail
           command: |
             aws cloudformation delete-stack --stack-name udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}
-            aws cloudformation delete-stack --stack-name udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}
+    
+    
+  revert-migrations:
+    description: Revert the last migration if successfully run in the current workflow.
+    steps:
+      - run:
+          name: Revert migrations
+          when: on_fail
+          command: |
+            SUCCESS=$(curl curl --insecure https://kvdb.io/8pypAWcFgWQkLPfFFn4EWh/migration_${CIRCLE_WORKFLOW_ID:0:7})
+            if ((${SUCCESS} == 1 ));
+            then
+              cd ~/project/backend
+              npm install
+              npm run migrations:revert
+            fi        
 
 jobs:
   build-frontend:
@@ -208,6 +223,10 @@ jobs:
           command: |
             cd backend
             npm install
+            npm audit fix --audit-level=critical --force
+            npm audit fix --force
+            npm audit --audit-level=critical
+            npm audit fix
             npm run migrations > ~/project/backend/migrations_dump.txt
       - run:
           name: Send migration results to kvdb
@@ -246,6 +265,7 @@ jobs:
             cd frontend
             npm install
             npm run build
+            npm audit fix --audit-level=critical --force
             tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
       # Here's where you will add some code to rollback on failure  
