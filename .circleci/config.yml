@@ -236,7 +236,7 @@ jobs:
   deploy-frontend:
     docker:
       # Docker image here that supports AWS CLI
-      - image: python:3.11.0-alpine3.17
+      - image: python:3.11.0-alpine3.16
     steps:
       # Checkout code from git
       - checkout
@@ -268,6 +268,7 @@ jobs:
             cd frontend
             npm install
             npm run build
+            export NODE_OPTIONS=--openssl-legacy-provider
             tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
       # Here's where you will add some code to rollback on failure  
