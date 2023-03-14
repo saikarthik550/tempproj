@@ -163,6 +163,7 @@ jobs:
             --filters Name=tag:Name,Values="backend-${CIRCLE_WORKFLOW_ID:0:7}" \
             --query  'Reservations[*].Instances[*].PublicIpAddress' \
             --output text >> inventory.txt
+            cat inventory.txt
       - persist_to_workspace:
           root: ~/
           paths:
@@ -172,7 +173,7 @@ jobs:
     
   configure-infrastructure:
     docker:
-      - image: python:3.11-alpine3.11
+      - image: python:3.11.0-alpine3.17
     steps:
       # Checkout code from git
       - checkout
