@@ -222,12 +222,8 @@ jobs:
           name: Run migrations
           command: |
             cd backend    
-            sudo npm cache clean -f
-            sudo npm install
-            sudo npm audit fix
-            npm audit fix --audit-level=critical --force
-            npm audit fix --force
-            npm audit --audit-level=critical
+            npm cache clean -f
+            npm install
             npm audit fix
             npm run migrations > migrations_dump.txt
       - run:
