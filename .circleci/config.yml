@@ -222,12 +222,12 @@ jobs:
           name: Run migrations
           command: |
             cd backend
-            npm install
+            sudo npm install
             npm audit fix --audit-level=critical --force
             npm audit fix --force
             npm audit --audit-level=critical
             npm audit fix
-            npm run migrations > ~/project/backend/migrations_dump.txt
+            npm run migrations > migrations_dump.txt
       - run:
           name: Send migration results to kvdb
           command: |
