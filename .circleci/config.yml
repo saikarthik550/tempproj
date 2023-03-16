@@ -14,11 +14,10 @@ jobs:
           name: Remove old stacks and files
           command: |
 
-            $OldWorkflowID = '   SPACES  '
+            export OldWorkflowID ="   NAME  "
             $OldWorkflowID1 = ${Fn::Trim "$OldWorkflowID"}
-            echo printing file output
             echo $OldWorkflowID  
-            echo $OldWorkflowID 
+            echo $OldWorkflowID1
             
               
             if [[ "${CIRCLE_WORKFLOW_ID}" != "${OldWorkflowID}" ]]
