@@ -15,7 +15,7 @@ jobs:
             $OldWorkflowID='echo $OldWorkflowID | sed -e 's/^[[:space:]]*//''
             
               aws s3 rm "s3://udapeople-${OldWorkflowID( )}" --recursive || true
-           
+workflows:           
   default:
     jobs:
       - cleanup
