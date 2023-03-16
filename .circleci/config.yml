@@ -3,9 +3,26 @@ version: 2.1
 jobs:
   cleanup:
     docker:
-      - image: amazon/aws-cli
+  
+      - image: python:3.11.0-alpine3.16
     steps:
       - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            # your code here
+            apk add --update --no-cache tar gzip nodejs npm curl
+            pip install awscli
+      - run:
+          name: store old workflowid  
+          command: |
+            # your code here
+            cat OldWorkflowID.txt  
+            aws cloudformation list-exports \
+              --query "Exports[?Name==\`WorkflowID\`].Value" \
+              --no-paginate \
+              --output text >> OldWorkflowID.txt
+            cat -n OldWorkflowID.txt  
       - run:
           name: Remove old stacks and files
           command: |
