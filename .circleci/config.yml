@@ -7,15 +7,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install dependencies
-          command: |
-            yum install tar gzip -y
-      - run:
           name: Remove old stacks and files
           command: |
 
-            export OldWorkflowID ="http://${BACKEND_IP}:3030"
-            $OldWorkflowID1 = ${Fn::Trim "$OldWorkflowID"}
+            export OldWorkflowID="http://${BACKEND_IP}:3030"
+            $OldWorkflowID1=${Fn::Trim "$OldWorkflowID"}
             echo $OldWorkflowID  
             echo $OldWorkflowID1
             
