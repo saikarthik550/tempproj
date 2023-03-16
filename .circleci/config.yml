@@ -17,7 +17,9 @@ jobs:
           name: store old workflowid  
           command: |
             # your code here
-            cat OldWorkflowID.txt  
+            cat -n OldWorkflowID.txt  
+            echo '' >> OldWorkflowID.txt
+            cat -n OldWorkflowID.txt  
             export OldWorkflowID=$(cat ~/project/OldWorkflowID.txt)
             echo "printing file output"
             echo $OldWorkflowID    
