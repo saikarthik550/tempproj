@@ -438,10 +438,6 @@ jobs:
             echo Stack names: "${STACKS[@]}"
             echo "file"
             cat -n OldWorkflowID.txt 
-            echo ${OldWorkflowID:155:7}
-            echo ${OldWorkflowID:150:10}
-
-
             export OldWorkflowID=$(cat ~/project/OldWorkflowID.txt)
             echo printing file output
             echo $OldWorkflowID
@@ -449,7 +445,7 @@ jobs:
             cat -n OldWorkflowID.txt  
             echo "10"
             echo ${OldWorkflowID:10:10}
-            eecho "20"
+            echo "20"
             echo ${OldWorkflowID:20:10}
             echo "30"
             echo ${OldWorkflowID:30:10}
