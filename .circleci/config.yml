@@ -443,6 +443,8 @@ jobs:
             echo $OldWorkflowID
             echo "file"
             cat -n OldWorkflowID.txt  
+            echo "Om namo venkatesaya"
+            echo ${OldWorkflowID:20:7}
             echo "10"
             echo ${OldWorkflowID:10:10}
             echo "20"
