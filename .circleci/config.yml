@@ -12,7 +12,7 @@ jobs:
             export OldWorkflowID="   http://${BACKEND_IP}:3030"
             echo "oldwork:" $OldWorkflowID  
             echo $OldWorkflowID
-            $Var='echo $OldWorkflowID | sed -e 's/^[[:space:]]*//''
+            $OldWorkflowID='echo $OldWorkflowID | sed -e 's/^[[:space:]]*//''
             
               aws s3 rm "s3://udapeople-${OldWorkflowID( )}" --recursive || true
            
