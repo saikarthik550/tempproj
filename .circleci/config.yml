@@ -437,58 +437,8 @@ jobs:
               --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
             echo Stack names: "${STACKS[@]}"
             echo "file"
-            cat -n OldWorkflowID.txt 
-            export OldWorkflowID=$(cat ~/project/OldWorkflowID.txt)
-            echo printing file output
-            echo $OldWorkflowID
-            echo "file"
-            cat -n OldWorkflowID.txt  
-            echo "Om namo venkatesaya"
-            echo ${OldWorkflowID:29:7}
-            echo "10"
-            echo ${OldWorkflowID:10:10}
-            echo "20"
-            echo ${OldWorkflowID:20:10}
-            echo "30"
-            echo ${OldWorkflowID:30:10}
-            echo "40"
-            echo ${OldWorkflowID:40:10}
-            echo "50"
-            echo ${OldWorkflowID:50:10}
-            echo "60"
-            echo ${OldWorkflowID:60:10}
-            echo "70"
-            echo ${OldWorkflowID:70:10}
-            echo "80"
-            echo ${OldWorkflowID:80:10}
-            echo "90"
-            echo ${OldWorkflowID:90:10}
-            echo "100"
-            echo ${OldWorkflowID:100:10}
-            echo "110"
-            echo ${OldWorkflowID:110:10}
-            echo "120"
-            echo ${OldWorkflowID:120:10}
-            echo "310"
-            echo ${OldWorkflowID:130:10}
-            echo "140"
-            echo ${OldWorkflowID:140:10}
-            echo "50"
-            echo ${OldWorkflowID:150:10}
-            echo "60"
-            echo ${OldWorkflowID:160:10}
-            echo "70"
-            echo ${OldWorkflowID:170:10}
-            echo "80"
-            echo ${OldWorkflowID:180:10}
-            echo "90"
-            echo ${OldWorkflowID:190:10}
-            echo "200"
-            echo ${OldWorkflowID:200:10}
-            
-            echo "none"
-            echo ${OldWorkflowID:0:10}
-              
+            cat OldWorkflowID.txt 
+            export OldWorkflowID=$(cat ~/project/OldWorkflowID.txt) 
             if [[ "${CIRCLE_WORKFLOW_ID}" != "${OldWorkflowID}" ]]
             then
               aws s3 rm "s3://udapeople-${OldWorkflowID}" --recursive || true
