@@ -18,18 +18,10 @@ jobs:
           command: |
             # your code here
             cat OldWorkflowID.txt  
-            aws cloudformation list-exports \
-              --query "Exports[?Name==\`WorkflowID\`].Value" \
-              --no-paginate \
-              --output text >> OldWorkflowID.txt
-            cat -n OldWorkflowID.txt  
-      - run:
-          name: Remove old stacks and files
-          command: |
-            export OldWorkflowID="   http://${BACKEND_IP}:3030"
-            echo "oldwork:" $OldWorkflowID  
-            echo $OldWorkflowID
-            $OldWorkflowID='echo $OldWorkflowID | sed -e 's/^[[:space:]]*//''
+            export OldWorkflowID=$(cat ~/project/OldWorkflowID.txt)
+            echo "printing file output"
+            echo $OldWorkflowID    
+            echo $OldWorkflowID | sed -e 's/^[[:space:]]*//'
             
               aws s3 rm "s3://udapeople-${OldWorkflowID( )}" --recursive || true
 workflows:           
