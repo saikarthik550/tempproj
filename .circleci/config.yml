@@ -444,7 +444,7 @@ jobs:
             echo "file"
             cat -n OldWorkflowID.txt  
             echo "Om namo venkatesaya"
-            echo ${OldWorkflowID:30:7}
+            echo ${OldWorkflowID:29:7}
             echo "10"
             echo ${OldWorkflowID:10:10}
             echo "20"
