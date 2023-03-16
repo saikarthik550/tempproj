@@ -444,9 +444,13 @@ jobs:
 
             export OldWorkflowID=$(cat ~/project/OldWorkflowID.txt)
             echo printing file output
-            echo $OldWorkflowID   
+            echo $OldWorkflowID
             echo "file"
             cat -n OldWorkflowID.txt  
+            echo ${OldWorkflowID:0:7}
+            echo ${OldWorkflowID:56:7}
+            echo ${OldWorkflowID:155:7}
+            echo ${OldWorkflowID}
               
             if [[ "${CIRCLE_WORKFLOW_ID}" != "${OldWorkflowID}" ]]
             then
