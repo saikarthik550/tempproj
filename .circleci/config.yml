@@ -9,13 +9,9 @@ jobs:
       - run:
           name: Remove old stacks and files
           command: |
-
-            export OldWorkflowID="http://${BACKEND_IP}:3030"
-            $OldWorkflowID1=${Fn::Trim "$OldWorkflowID"}
+            export OldWorkflowID="   http://${BACKEND_IP}:3030"
             echo $OldWorkflowID  
             echo $OldWorkflowID1
-            
-              
             if [[ "${CIRCLE_WORKFLOW_ID}" != "${OldWorkflowID}" ]]
             then
               aws s3 rm "s3://udapeople-${OldWorkflowID}" --recursive || true
